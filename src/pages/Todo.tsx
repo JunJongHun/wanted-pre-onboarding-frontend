@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import getTodos from "../services/getTodos";
 import postCreateTodo from "../services/postCreateTodo";
+import { TodoType } from "../types/todo";
 import hasToken from "../utils/hasToken";
 
 function Todo() {
   const [todoText, setTodoText] = useState("");
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   const navigate = useNavigate();
 
@@ -14,12 +17,18 @@ function Todo() {
 
   const createTodo = async () => {
     await postCreateTodo(todoText);
+    getTodos().then((res) => {
+      setTodos([...res]);
+    });
     setTodoText("");
   };
 
   useEffect(() => {
     if (!hasToken()) navigate("/signin");
-  });
+    getTodos().then((res) => {
+      setTodos([...res]);
+    });
+  }, []);
 
   return (
     <div>
@@ -35,18 +44,14 @@ function Todo() {
         </button>
       </div>
       <ul>
-        <li>
-          <label>
-            <input type="checkbox" />
-            <span>TODO 1</span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" />
-            <span>TODO 2</span>
-          </label>
-        </li>
+        {todos?.map((todo) => (
+          <li key={todo.id}>
+            <label>
+              <input type="checkbox" defaultChecked={todo.isCompleted} />
+              <span>{todo.todo}</span>
+            </label>
+          </li>
+        ))}
       </ul>
     </div>
   );
