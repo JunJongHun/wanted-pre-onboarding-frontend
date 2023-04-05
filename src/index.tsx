@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import Todo from "./pages/Todo";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: "signin",
-        element: <div>signin</div>,
+        element: <SignIn></SignIn>,
+      },
+      {
+        path: "todo",
+        element: <Todo></Todo>,
       },
     ],
   },
