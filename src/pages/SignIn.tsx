@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useValidate from "../hooks/useValidate";
-import postSignUp from "../services/postSignUp";
+import postSignIn from "../services/postSignIn";
 import { InfoType } from "../types/info";
 import hasToken from "../utils/hasToken";
-function SignUp() {
+function SignIn() {
   //상태값
   const [info, setInfo] = useState<InfoType>({ email: "", password: "" });
   // 유효성 검사
@@ -22,14 +22,13 @@ function SignUp() {
 
   const onSubmit = async () => {
     try {
-      await postSignUp(info);
-      alert("정삭적으로 회원가입 완료!");
-      navigate("/signin");
+      const { access_token } = await postSignIn(info);
+
+      //로칼스토리지 토큰 저장
+      localStorage.setItem("jwt", access_token);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        alert(error.response?.data.message);
       } else {
-        alert("회원가입에 실패!");
       }
     }
 
@@ -66,14 +65,14 @@ function SignUp() {
       </div>
 
       <button
-        data-testid="signup-button"
+        data-testid="signin-button"
         onClick={onSubmit}
         disabled={!(isEmail && isPassword)}
       >
-        회원가입
+        로그인
       </button>
     </div>
   );
 }
 
-export default SignUp;
+export default SignIn;
