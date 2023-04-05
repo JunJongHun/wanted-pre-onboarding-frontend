@@ -1,31 +1,27 @@
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useValidate from "../hooks/useValidate";
 import postSignUp from "../services/postSignUp";
 import { InfoType } from "../types/info";
 function SignUp() {
   //상태값
   const [info, setInfo] = useState<InfoType>({ email: "", password: "" });
   // 유효성 검사
-  const [isEmail, setIsEmail] = useState(false);
-  const [isPassword, setIsPassword] = useState(false);
-  console.log(isEmail, isPassword);
+  const [isEmail, setIsEmail] = useValidate(info.email, /.*@.*/);
+  const [isPassword, setIsPassword] = useValidate(info.password, /.{8,}/);
+
   //라우팅
   const navigate = useNavigate();
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /.*@.*/;
     const email = e.target.value;
-
     setInfo((pre) => ({ ...pre, email }));
-    setIsEmail(emailRegex.test(email));
   };
 
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex = /.{8,}/;
     const password = e.target.value;
-
     setInfo((pre) => ({ ...pre, password }));
-    setIsPassword(passwordRegex.test(password));
   };
 
   const onSubmit = async () => {
@@ -34,12 +30,14 @@ function SignUp() {
       alert("정삭적으로 회원가입 완료!");
       navigate("/signin");
     } catch (error) {
-      alert("aaa");
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data.message);
+      } else {
+        alert("회원가입에 실패!");
+      }
     }
 
     setInfo({ email: "", password: "" });
-    setIsEmail(false);
-    setIsPassword(false);
   };
 
   return (
