@@ -26,6 +26,8 @@ function SignIn() {
 
       //로칼스토리지 토큰 저장
       localStorage.setItem("jwt", access_token);
+
+      navigate("/todo");
     } catch (error) {
       if (axios.isAxiosError(error)) {
       } else {
