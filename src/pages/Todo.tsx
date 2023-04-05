@@ -4,6 +4,7 @@ import getTodos from "../services/getTodos";
 import postCreateTodo from "../services/postCreateTodo";
 import { TodoType } from "../types/todo";
 import hasToken from "../utils/hasToken";
+import deleteTodo from "../services/deleteTodo";
 
 function Todo() {
   const [todoText, setTodoText] = useState("");
@@ -21,6 +22,13 @@ function Todo() {
       setTodos([...res]);
     });
     setTodoText("");
+  };
+
+  const delTodo = async (id: number) => {
+    await deleteTodo(id);
+    getTodos().then((res) => {
+      setTodos([...res]);
+    });
   };
 
   useEffect(() => {
@@ -49,6 +57,14 @@ function Todo() {
             <label>
               <input type="checkbox" defaultChecked={todo.isCompleted} />
               <span>{todo.todo}</span>
+              <button>수정</button>
+              <button
+                onClick={() => {
+                  delTodo(todo.id);
+                }}
+              >
+                삭제
+              </button>
             </label>
           </li>
         ))}
