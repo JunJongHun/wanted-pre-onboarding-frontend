@@ -38,7 +38,7 @@ function SignUp() {
     }
 
     setInfo({ email: "", password: "" });
-  }, []);
+  }, [info]);
 
   useEffect(() => {
     if (hasToken()) navigate("/todo");
