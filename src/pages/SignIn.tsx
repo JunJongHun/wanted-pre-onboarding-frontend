@@ -29,9 +29,8 @@ function SignIn() {
 
       navigate("/todo");
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-      } else {
-      }
+      if (axios.isAxiosError(error)) alert(error.response?.data.message);
+      else console.error(error);
     }
 
     setInfo({ email: "", password: "" });
