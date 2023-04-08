@@ -24,8 +24,8 @@ function CreateTodoInput({
         onChange={onChange}
       />
       <button
-        className="bg-blue-100
-        p-2 disabled:opacity-20"
+        className="bg-blue-600 text-white
+        p-2 disabled:bg-slate-300  disabled:text-gray-400"
         data-testid="new-todo-add-button"
         onClick={onClick}
         disabled={isTextEmpty}

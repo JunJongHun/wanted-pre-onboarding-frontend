@@ -46,49 +46,51 @@ function SignUp() {
   }, [isEmail, isPassword]);
 
   return (
-    <div className="mt-12 flex flex-col items-center justify-center">
-      <div className="h-20">
-        <input
-          className="rounded-md border p-2"
-          name="email"
-          placeholder="이메일 입력해주세요"
-          type="email"
-          data-testid="email-input"
-          value={info.email}
-          onChange={onChangeInfo}
-        />
-        {!isEmail ? (
-          <div className="ml-1 mt-1 text-sm text-red-500 opacity-75">
-            이메일 형식이 맞지 않습니다
-          </div>
-        ) : undefined}
-      </div>
-      <div className="h-20">
-        <input
-          className="rounded-md border p-2"
-          name="password"
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
-          data-testid="password-input"
-          value={info.password}
-          onChange={onChangeInfo}
-        />
-        {!isPassword ? (
-          <div className="ml-1 mt-1 text-sm text-red-500 opacity-75">
-            8글자 이상 입력해주세요
-          </div>
-        ) : undefined}
-      </div>
+    <section className=" flex justify-center items-center">
+      <div className="max-w-fit mt-12 flex flex-col">
+        <div className="h-20">
+          <input
+            className="rounded-md border p-2"
+            name="email"
+            placeholder="이메일 입력해주세요"
+            type="email"
+            data-testid="email-input"
+            value={info.email}
+            onChange={onChangeInfo}
+          />
+          {!isEmail ? (
+            <div className="ml-1 mt-1 text-sm text-red-500 opacity-75">
+              이메일 형식이 맞지 않습니다
+            </div>
+          ) : undefined}
+        </div>
+        <div className="h-20">
+          <input
+            className="rounded-md border p-2"
+            name="password"
+            placeholder="비밀번호를 입력해주세요"
+            type="password"
+            data-testid="password-input"
+            value={info.password}
+            onChange={onChangeInfo}
+          />
+          {!isPassword ? (
+            <div className="ml-1 mt-1 text-sm text-red-500 opacity-75">
+              8글자 이상 입력해주세요
+            </div>
+          ) : undefined}
+        </div>
 
-      <button
-        className={`rounded-lg bg-blue-100 p-2  disabled:opacity-20 `}
-        data-testid="signup-button"
-        onClick={onSubmit}
-        disabled={disabled}
-      >
-        회원가입
-      </button>
-    </div>
+        <button
+          className={`w-full rounded-full  bg-blue-600  p-2  text-white disabled:bg-slate-300  disabled:text-gray-400`}
+          data-testid="signup-button"
+          onClick={onSubmit}
+          disabled={disabled}
+        >
+          회원가입
+        </button>
+      </div>
+    </section>
   );
 }
 

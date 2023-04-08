@@ -48,11 +48,12 @@ function Todo({
   };
 
   return (
-    <li key={id}>
+    <li key={id} className="mb-3">
       {check ? (
         <div className="flex w-full items-center justify-center">
           <label className="flex">
             <input
+              className=" w-5"
               type="checkbox"
               defaultChecked={isCompleted}
               onClick={handleCheckBox}
@@ -60,14 +61,14 @@ function Todo({
             <span className="w-40 break-words p-2">{todo}</span>
           </label>
           <button
-            className="w-16 bg-blue-100 py-2"
+            className="w-16  rounded-full text-white bg-blue-500 py-2"
             data-testid="modify-button"
             onClick={handleModify}
           >
             수정
           </button>
           <button
-            className="w-16  bg-red-100 p-2"
+            className="w-16 ml-1 rounded-full text-white bg-red-400 p-2"
             data-testid="delete-button"
             onClick={handleDelete}
           >
@@ -77,6 +78,7 @@ function Todo({
       ) : (
         <div className="flex">
           <input
+            className=" w-5"
             type="checkbox"
             defaultChecked={isCompleted}
             onClick={handleCheckBox}
@@ -93,14 +95,14 @@ function Todo({
             }}
           />
           <button
-            className="w-16  bg-green-100 p-2"
+            className="w-16 text-white  rounded-full bg-green-500 p-2"
             data-testid="submit-button"
             onClick={handleSubmit}
           >
             제출
           </button>
           <button
-            className="w-16  bg-amber-100 p-2"
+            className="w-16  ml-1  rounded-full text-white bg-amber-300 p-2"
             data-testid="cancel-button"
             onClick={handleCancel}
           >

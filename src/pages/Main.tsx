@@ -11,7 +11,7 @@ function Main() {
       />
       <div className="flex">
         <button
-          className="m-3 rounded-lg bg-blue-100 p-3 hover:scale-110"
+          className="m-3  rounded-lg  bg-blue-600 p-3 text-white  hover:scale-110"
           onClick={() => {
             navigate("/signup");
           }}
@@ -19,7 +19,7 @@ function Main() {
           회원가입 하러가기
         </button>
         <button
-          className="m-3 rounded-lg bg-blue-100 p-3  hover:scale-110"
+          className="m-3 rounded-lg bg-blue-600 p-3 text-white  hover:scale-110"
           onClick={() => {
             navigate("/signin");
           }}

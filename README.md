@@ -10,7 +10,6 @@ https://wanted-pre-onboarding-frontend-jonghun0209.vercel.app/
 
 ![데모영상]
 
-
 ---
 
 ## 프로젝트 실행 방법
@@ -36,7 +35,9 @@ $ npm start
 ---
 
 ## 구현 사항
+
 - JWT 토큰을 사용 로그인, 회원가입 구현
+
   - 회원가입, 로그인 폼 작성 시 유효성 검사
     - 유효성 검사 : custom hook 구현
   - 유효성 검사에 따른 버튼 활성화/비활성화
@@ -44,8 +45,9 @@ $ npm start
   - 에러 알림 처리
 
 - TODO 기능 개발
+
   - 회원 Todo List 렌더링 구현
-  - Todo 생성 
+  - Todo 생성
     - 추가 버튼 눌렀을 때, todo 추가 구현
     - 빈 문자열 여부에 따른 추가 버튼 활성화/비활성화
   - TODO 수정
@@ -54,16 +56,17 @@ $ npm start
     - 취소 버튼 눌렀을 때, 내용 초기화 및 수정모드 비활성화
   - TODO 삭제
     - 삭제 버튼 눌었을 때, todo 삭제 기능 구현
-   
   - 체크박스 클릭 시, todo 완료 여부 구현
   - todo 목록 눌렀을 시, 체크박스 체크 구현
-  
+
 - 정적 타입 언어 Typescript을 사용
   - 컴파일 단계 에러 확인
   - 코드 자동완성
+
 ---
 
-## Tech Stack                           
+## Tech Stack
+
 - React
 - typescript
 - axios
