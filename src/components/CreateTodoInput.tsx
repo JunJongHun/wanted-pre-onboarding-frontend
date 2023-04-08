@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function CreateTodoInput({
   text,
@@ -9,6 +9,11 @@ function CreateTodoInput({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
 }) {
+  const [isTextEmpty, setIsTextEmpty] = useState(true);
+
+  useEffect(() => {
+    setIsTextEmpty(text === "");
+  }, [text]);
   return (
     <div className="mb-6 flex">
       <input
@@ -20,9 +25,10 @@ function CreateTodoInput({
       />
       <button
         className="bg-blue-100
-        p-2"
+        p-2 disabled:opacity-20"
         data-testid="new-todo-add-button"
         onClick={onClick}
+        disabled={isTextEmpty}
       >
         추가
       </button>
