@@ -6,6 +6,7 @@ import { TodoType } from "../types/todo";
 import hasToken from "../utils/hasToken";
 import CreateTodoInput from "../components/CreateTodoInput";
 import TodoList from "../components/TodoList";
+import React from "react";
 
 function Todo() {
   const [todoText, setTodoText] = useState("");
@@ -23,10 +24,8 @@ function Todo() {
   //생성
   const createTodo = useCallback(async () => {
     try {
-      await postCreateTodo(todoText);
-      getTodos().then((res) => {
-        setTodos([...res]);
-      });
+      const todo = await postCreateTodo(todoText);
+      setTodos((pre) => [...pre, todo]);
       setTodoText("");
     } catch (error) {
       alert("값을 입력해주세요!");

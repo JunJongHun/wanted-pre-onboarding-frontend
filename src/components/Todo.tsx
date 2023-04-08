@@ -1,6 +1,6 @@
+import React from "react";
 import { useRef, useState } from "react";
 import deleteTodo from "../services/deleteTodo";
-import getTodos from "../services/getTodos";
 import putTodo from "../services/putTodo";
 import { TodoType } from "../types/todo";
 
@@ -25,7 +25,7 @@ function Todo({
 
   const handleDelete = async () => {
     await deleteTodo(id);
-    await getTodos().then((res) => setTodos([...res]));
+    setTodos((pre) => pre.filter((item) => item.id !== id));
   };
 
   const handleSubmit = () => {
@@ -45,6 +45,11 @@ function Todo({
 
   const handleCheckBox = () => {
     putTodo(id, { todo, isCompleted: !isCompleted });
+    setTodos((pre) => [
+      ...pre.map((item) =>
+        item.id === id ? { ...item, isCompleted: !isCompleted } : item
+      ),
+    ]);
   };
 
   return (
@@ -61,14 +66,14 @@ function Todo({
             <span className="w-40 break-words p-2">{todo}</span>
           </label>
           <button
-            className="w-16  rounded-full text-white bg-blue-500 py-2"
+            className="w-16  rounded-full bg-blue-500 py-2 text-white"
             data-testid="modify-button"
             onClick={handleModify}
           >
             수정
           </button>
           <button
-            className="w-16 ml-1 rounded-full text-white bg-red-400 p-2"
+            className="ml-1 w-16 rounded-full bg-red-400 p-2 text-white"
             data-testid="delete-button"
             onClick={handleDelete}
           >
@@ -95,14 +100,14 @@ function Todo({
             }}
           />
           <button
-            className="w-16 text-white  rounded-full bg-green-500 p-2"
+            className="w-16 rounded-full  bg-green-500 p-2 text-white"
             data-testid="submit-button"
             onClick={handleSubmit}
           >
             제출
           </button>
           <button
-            className="w-16  ml-1  rounded-full text-white bg-amber-300 p-2"
+            className="ml-1  w-16  rounded-full bg-amber-300 p-2 text-white"
             data-testid="cancel-button"
             onClick={handleCancel}
           >
@@ -114,4 +119,4 @@ function Todo({
   );
 }
 
-export default Todo;
+export default React.memo(Todo);
