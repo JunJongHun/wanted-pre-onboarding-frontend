@@ -10,14 +10,20 @@ function CreateTodoInput({
   onClick: () => void;
 }) {
   return (
-    <div>
+    <div className="mb-6 flex">
       <input
+        className="border p-2"
         data-testid="new-todo-input"
         placeholder="생성할 todo 입력해주세요"
         value={text}
         onChange={onChange}
       />
-      <button data-testid="new-todo-add-button" onClick={onClick}>
+      <button
+        className="bg-blue-100
+        p-2"
+        data-testid="new-todo-add-button"
+        onClick={onClick}
+      >
         추가
       </button>
     </div>
