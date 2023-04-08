@@ -7,12 +7,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Todo from "./pages/Todo";
+import Main from "./pages/Main";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Main></Main>,
+      },
       {
         path: "signup",
         element: <SignUp></SignUp>,
